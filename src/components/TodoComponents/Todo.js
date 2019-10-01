@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import { directive } from "@babel/types";
 
 
@@ -34,6 +34,25 @@ class Todo extends React.Component {
       ]
     };
   }
+
+  onSubmitHandle(event) {
+    event.preventDefault();
+
+    this.setState({
+      mockData: [
+        ...this.state.mockData,
+        {
+          id: Date.now(),
+          title: event.target.item.value,
+          done: false,
+          date: new Date()
+        }
+      ]
+    });
+
+    event.target.item.value = "";
+  }
+
 
   render() {
     return (
