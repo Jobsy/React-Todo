@@ -4,9 +4,10 @@ import TodoForm from "./TodoForm";
 
 
 class Todo extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
+    // const [data, setData] = useState()
     this.state = {
       data: [
         {
@@ -140,13 +141,12 @@ class Todo extends React.Component {
     return (
       <div>
         {this.renderEditForm()}
-       <> <form onSubmit={this.onSubmitHandle.bind(this)}>
+        {/* <form onSubmit={this.onSubmitHandle.bind(this)}>
           <input type="text" name="item" className="item" />
           <button className="btn-add-item">Add</button>
+        </form> */}
 
-        </form></>
-
-        {/* <TodoForm  onSubmitHandle={this.onSubmitHandle}/> */}
+        <TodoForm  onSubmitHandle={this.onSubmitHandle.bind(this)}/>
 
         <button onClick={this.removeAllTodosThatAreComplete}>
           remove all complete todos
