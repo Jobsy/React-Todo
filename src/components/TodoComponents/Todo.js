@@ -36,7 +36,16 @@ class Todo extends React.Component {
       ]
     };
   }
+  
+  componentDidMount() {
+    const myNewData = JSON.parse(window.localStorage.getItem('todos'));
 
+    if(myNewData){
+    this.setState({
+      data: myNewData
+    });
+  }
+  }
   onSubmitHandle(event) {
     event.preventDefault();
 
@@ -53,6 +62,8 @@ class Todo extends React.Component {
     });
 
     event.target.item.value = "";
+
+    window.localStorage.setItem('todos', JSON.stringify(this.state.data));
   }
 
   onDeleteHandle() {
