@@ -65,6 +65,30 @@ class Todo extends React.Component {
     });
   }
 
+  onEditHandle(event) {
+    this.setState({
+      edit: true,
+      id: arguments[0],
+      title: arguments[1]
+    });
+  }
+
+  onCompleteHandle() {
+    let id = arguments[0];
+
+    this.setState({
+      mockData: this.state.mockData.map(item => {
+        if (item.id === id) {
+          item["done"] = true;
+          return item;
+        }
+
+        return item;
+      })
+    });
+  }
+
+
 
 
   render() {
