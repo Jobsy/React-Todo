@@ -38,7 +38,6 @@ class Todo extends React.Component {
   render() {
     return (
       <div>
-        {this.renderEditForm()}
         <form onSubmit={this.onSubmitHandle.bind(this)}>
           <input type="text" name="item" className="item" />
           <button className="btn-add-item">Add</button>
@@ -65,3 +64,6 @@ class Todo extends React.Component {
     );
   }
 }
+
+
+export default Todo;
