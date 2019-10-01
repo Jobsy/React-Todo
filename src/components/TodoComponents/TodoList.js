@@ -11,7 +11,6 @@ class TodoList extends React.Component {
     render() {
         return(
             <ul>
-            {/* {this.state.data.map(item => ( */}
               <li key={this.props.key} className={this.props.done ? "done" : "hidden"}>
                 {this.props.title}
                 <button onClick={this.props.onDeleteHandle}>
@@ -26,7 +25,6 @@ class TodoList extends React.Component {
                   Complete
                 </button>
               </li>
-            {/* ))} */}
           </ul>
         )
     }

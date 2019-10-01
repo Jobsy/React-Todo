@@ -8,7 +8,6 @@ class Todo extends React.Component {
   constructor(props) {
     super(props);
 
-    // const [data, setData] = useState()
     this.state = {
       data: [
         {
@@ -117,7 +116,6 @@ class Todo extends React.Component {
     });
   }
 
-
   renderEditForm() {
     if (this.state.edit) {
       return (
@@ -134,20 +132,12 @@ class Todo extends React.Component {
     }
   }
 
-
-
-
-
   render() {
     return (
       <div>
         {this.renderEditForm()}
-        {/* <form onSubmit={this.onSubmitHandle.bind(this)}>
-          <input type="text" name="item" className="item" />
-          <button className="btn-add-item">Add</button>
-        </form> */}
 
-        <TodoForm  onSubmitHandle={this.onSubmitHandle.bind(this)}/>
+        <TodoForm onSubmitHandle={this.onSubmitHandle.bind(this)} />
 
         <button onClick={this.removeAllTodosThatAreComplete}>
           Remove all complete todos
@@ -155,25 +145,9 @@ class Todo extends React.Component {
 
         <ul>
           {this.state.data.map(item => (
-
-<TodoList  key={item.id} title={item.title} done={item.done} onDeleteHandle={this.onDeleteHandle.bind(this, item.id)} onEditHandle={this.onEditHandle.bind(this, item.id, item.title)} onCompleteHandle={this.onCompleteHandle.bind(this, item.id)} />
-            // <li key={item.id} className={item.done ? "done" : "hidden"}>
-            //   {item.title}
-            //   <button onClick={this.onDeleteHandle.bind(this, item.id)}>
-            //     Delete
-            //   </button>
-            //   <button
-            //     onClick={this.onEditHandle.bind(this, item.id, item.title)}
-            //   >
-            //     Edit
-            //   </button>
-            //   <button onClick={this.onCompleteHandle.bind(this, item.id)}>
-            //     Complete
-            //   </button>
-            // </li>
+            <TodoList key={item.id} title={item.title} done={item.done} onDeleteHandle={this.onDeleteHandle.bind(this, item.id)} onEditHandle={this.onEditHandle.bind(this, item.id, item.title)} onCompleteHandle={this.onCompleteHandle.bind(this, item.id)} />
           ))}
         </ul>
-        
       </div>
     );
   }
