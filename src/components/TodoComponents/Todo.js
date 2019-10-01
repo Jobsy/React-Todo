@@ -1,12 +1,13 @@
-import React from "react";
-import { directive } from "@babel/types";
+import React, { Component } from "react";
+import "../../styles.css";
+class Todo extends Component {
+  constructor(props) {
+    super(props);
 
-
-class Todo extends React.Component {
-  constructor() {
-    super();
     this.state = {
-      data: [
+      edit: false,
+      id: null,
+      mockData: [
         {
           id: "1",
           title: "Buy Milk.",
@@ -73,6 +74,25 @@ class Todo extends React.Component {
     });
   }
 
+  onUpdateHandle(event) {
+    event.preventDefault();
+
+    this.setState({
+      mockData: this.state.mockData.map(item => {
+        if (item.id === this.state.id) {
+          item["title"] = event.target.updatedItem.value;
+          return item;
+        }
+
+        return item;
+      })
+    });
+
+    this.setState({
+      edit: false
+    });
+  }
+
   onCompleteHandle() {
     let id = arguments[0];
 
@@ -104,14 +124,10 @@ class Todo extends React.Component {
     }
   }
 
-
-
-
-
   render() {
     return (
       <div>
-                {this.renderEditForm()}
+        {this.renderEditForm()}
         <form onSubmit={this.onSubmitHandle.bind(this)}>
           <input type="text" name="item" className="item" />
           <button className="btn-add-item">Add</button>
@@ -138,6 +154,5 @@ class Todo extends React.Component {
     );
   }
 }
-
 
 export default Todo;
