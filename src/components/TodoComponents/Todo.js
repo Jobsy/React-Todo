@@ -53,6 +53,19 @@ class Todo extends React.Component {
     event.target.item.value = "";
   }
 
+  onDeleteHandle() {
+    let id = arguments[0];
+
+    this.setState({
+      mockData: this.state.mockData.filter(item => {
+        if (item.id !== id) {
+          return item;
+        }
+      })
+    });
+  }
+
+
 
   render() {
     return (
