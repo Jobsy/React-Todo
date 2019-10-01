@@ -100,17 +100,17 @@ class Todo extends React.Component {
     });
   }
 
-
   onCompleteHandle() {
     let id = arguments[0];
 
     this.setState({
       data: this.state.data.map(item => {
         if (item.id === id) {
-          item["done"] = true;
-          return item;
+          return {
+            ...item,
+            done: !item.done
+          };
         }
-
         return item;
       })
     });
