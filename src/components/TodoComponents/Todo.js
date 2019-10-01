@@ -88,6 +88,23 @@ class Todo extends React.Component {
     });
   }
 
+  renderEditForm() {
+    if (this.state.edit) {
+      return (
+        <form onSubmit={this.onUpdateHandle.bind(this)}>
+          <input
+            type="text"
+            name="updatedItem"
+            className="item"
+            defaultValue={this.state.title}
+          />
+          <button className="update-add-item">Update</button>
+        </form>
+      );
+    }
+  }
+
+
 
 
 
