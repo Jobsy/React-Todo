@@ -1,5 +1,6 @@
 import React from "react";
 import "../../styles.css";
+import TodoForm from "./TodoForm";
 
 
 class Todo extends React.Component {
@@ -70,16 +71,6 @@ class Todo extends React.Component {
     this.setState({
       data: this.state.data.filter(item => !item.done)
     });
-
-    // let id = arguments[0];
-
-    // this.setState({
-    //   data: this.state.data.filter(item => {
-    //     if (item.id !== id) {
-    //       return item;
-    //     }
-    //   })
-    // });
   };
 
   onEditHandle(event) {
@@ -89,6 +80,7 @@ class Todo extends React.Component {
       title: arguments[1]
     });
   }
+
   onUpdateHandle(event) {
     event.preventDefault();
 
@@ -98,7 +90,6 @@ class Todo extends React.Component {
           item["title"] = event.target.updatedItem.value;
           return item;
         }
-
         return item;
       })
     });
@@ -149,19 +140,17 @@ class Todo extends React.Component {
     return (
       <div>
         {this.renderEditForm()}
-        <form onSubmit={this.onSubmitHandle.bind(this)}>
+       <> <form onSubmit={this.onSubmitHandle.bind(this)}>
           <input type="text" name="item" className="item" />
           <button className="btn-add-item">Add</button>
 
-        </form>
-      
-     
-        {/* <button onClick={this.onClickHandle.bind(this, item.id)}>Clear Selected Completed Task</button> */}
-       
-            <button onClick={this.removeAllTodosThatAreComplete}> 
-              remove all complete todos
-            </button>
-         
+        </form></>
+
+        {/* <TodoForm  onSubmitHandle={this.onSubmitHandle}/> */}
+
+        <button onClick={this.removeAllTodosThatAreComplete}>
+          remove all complete todos
+        </button>
 
         <ul>
           {this.state.data.map(item => (
