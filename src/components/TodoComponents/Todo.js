@@ -5,6 +5,7 @@ import "../../styles.css";
 class Todo extends React.Component {
   constructor() {
     super();
+
     this.state = {
       data: [
         {
@@ -65,6 +66,22 @@ class Todo extends React.Component {
     });
   }
 
+  removeAllTodosThatAreComplete = () => {
+    this.setState({
+      data: this.state.data.filter(item => !item.done)
+    });
+
+    // let id = arguments[0];
+
+    // this.setState({
+    //   data: this.state.data.filter(item => {
+    //     if (item.id !== id) {
+    //       return item;
+    //     }
+    //   })
+    // });
+  };
+
   onEditHandle(event) {
     this.setState({
       edit: true,
@@ -107,6 +124,7 @@ class Todo extends React.Component {
     });
   }
 
+
   renderEditForm() {
     if (this.state.edit) {
       return (
@@ -130,12 +148,20 @@ class Todo extends React.Component {
   render() {
     return (
       <div>
-                {this.renderEditForm()}
+        {this.renderEditForm()}
         <form onSubmit={this.onSubmitHandle.bind(this)}>
           <input type="text" name="item" className="item" />
           <button className="btn-add-item">Add</button>
+
         </form>
-        <button>Clear Selected Completed Task</button>
+      
+     
+        {/* <button onClick={this.onClickHandle.bind(this, item.id)}>Clear Selected Completed Task</button> */}
+       
+            <button onClick={this.removeAllTodosThatAreComplete}> 
+              remove all complete todos
+            </button>
+         
 
         <ul>
           {this.state.data.map(item => (
