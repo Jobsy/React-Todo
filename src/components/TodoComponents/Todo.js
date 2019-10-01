@@ -1,13 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../styles.css";
-class Todo extends Component {
-  constructor(props) {
-    super(props);
 
+
+class Todo extends React.Component {
+  constructor() {
+    super();
     this.state = {
-      edit: false,
-      id: null,
-      mockData: [
+      data: [
         {
           id: "1",
           title: "Buy Milk.",
@@ -40,8 +39,8 @@ class Todo extends Component {
     event.preventDefault();
 
     this.setState({
-      mockData: [
-        ...this.state.mockData,
+      data: [
+        ...this.state.data,
         {
           id: Date.now(),
           title: event.target.item.value,
@@ -58,7 +57,7 @@ class Todo extends Component {
     let id = arguments[0];
 
     this.setState({
-      mockData: this.state.mockData.filter(item => {
+      data: this.state.data.filter(item => {
         if (item.id !== id) {
           return item;
         }
@@ -73,7 +72,6 @@ class Todo extends Component {
       title: arguments[1]
     });
   }
-
   onUpdateHandle(event) {
     event.preventDefault();
 
@@ -93,11 +91,12 @@ class Todo extends Component {
     });
   }
 
+
   onCompleteHandle() {
     let id = arguments[0];
 
     this.setState({
-      mockData: this.state.mockData.map(item => {
+      data: this.state.data.map(item => {
         if (item.id === id) {
           item["done"] = true;
           return item;
@@ -124,16 +123,20 @@ class Todo extends Component {
     }
   }
 
+
+
+
+
   render() {
     return (
       <div>
-        {this.renderEditForm()}
+                {this.renderEditForm()}
         <form onSubmit={this.onSubmitHandle.bind(this)}>
           <input type="text" name="item" className="item" />
           <button className="btn-add-item">Add</button>
         </form>
         <ul>
-          {this.state.mockData.map(item => (
+          {this.state.data.map(item => (
             <li key={item.id} className={item.done ? "done" : "hidden"}>
               {item.title}
               <button onClick={this.onDeleteHandle.bind(this, item.id)}>
@@ -154,5 +157,6 @@ class Todo extends Component {
     );
   }
 }
+
 
 export default Todo;
