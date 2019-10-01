@@ -76,7 +76,7 @@ class Todo extends React.Component {
     event.preventDefault();
 
     this.setState({
-      mockData: this.state.mockData.map(item => {
+      data: this.state.data.map(item => {
         if (item.id === this.state.id) {
           item["title"] = event.target.updatedItem.value;
           return item;
@@ -135,6 +135,8 @@ class Todo extends React.Component {
           <input type="text" name="item" className="item" />
           <button className="btn-add-item">Add</button>
         </form>
+        <button>Clear Selected Completed Task</button>
+
         <ul>
           {this.state.data.map(item => (
             <li key={item.id} className={item.done ? "done" : "hidden"}>
