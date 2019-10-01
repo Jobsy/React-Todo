@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles.css";
 import TodoForm from "./TodoForm";
+import TodoList from "./TodoList";
 
 
 class Todo extends React.Component {
@@ -149,27 +150,30 @@ class Todo extends React.Component {
         <TodoForm  onSubmitHandle={this.onSubmitHandle.bind(this)}/>
 
         <button onClick={this.removeAllTodosThatAreComplete}>
-          remove all complete todos
+          Remove all complete todos
         </button>
 
         <ul>
           {this.state.data.map(item => (
-            <li key={item.id} className={item.done ? "done" : "hidden"}>
-              {item.title}
-              <button onClick={this.onDeleteHandle.bind(this, item.id)}>
-                Delete
-              </button>
-              <button
-                onClick={this.onEditHandle.bind(this, item.id, item.title)}
-              >
-                Edit
-              </button>
-              <button onClick={this.onCompleteHandle.bind(this, item.id)}>
-                Complete
-              </button>
-            </li>
+
+<TodoList  key={item.id} title={item.title} done={item.done} onDeleteHandle={this.onDeleteHandle.bind(this, item.id)} onEditHandle={this.onEditHandle.bind(this, item.id, item.title)} onCompleteHandle={this.onCompleteHandle.bind(this, item.id)} />
+            // <li key={item.id} className={item.done ? "done" : "hidden"}>
+            //   {item.title}
+            //   <button onClick={this.onDeleteHandle.bind(this, item.id)}>
+            //     Delete
+            //   </button>
+            //   <button
+            //     onClick={this.onEditHandle.bind(this, item.id, item.title)}
+            //   >
+            //     Edit
+            //   </button>
+            //   <button onClick={this.onCompleteHandle.bind(this, item.id)}>
+            //     Complete
+            //   </button>
+            // </li>
           ))}
         </ul>
+        
       </div>
     );
   }
